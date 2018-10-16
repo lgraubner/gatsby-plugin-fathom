@@ -1,0 +1,45 @@
+{
+  "name": "gatsby-plugin-fathom",
+  "version": "1.0.0",
+  "description": "Gatsby plugin to add Fathom tracking onto a site.",
+  "repository": "lgraubner/gatsby-plugin-fathom",
+  "bugs": {
+    "url": "https://github.com/lgraubner/gatsby-plugin-fathom/issues"
+  },
+  "homepage": "https://github.com/lgraubner/gatsby-plugin-fathom",
+  "scripts": {
+    "build": "babel src --out-dir . --ignore __tests__",
+    "prepare": "cross-env NODE_ENV=production npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "fathom",
+    "analytics"
+  ],
+  "author": "Lars Graubner <mail@larsgraubner.de> (https://larsgraubner.com)",
+  "license": "MIT",
+  "peerDependencies": {
+    "gatsby": ">=2.0.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "7.1.2",
+    "@babel/core": "7.1.2",
+    "@babel/preset-env": "7.1.0",
+    "@babel/preset-react": "7.0.0",
+    "cross-env": "5.2.0",
+    "eslint": "5.7.0",
+    "eslint-plugin-react": "7.11.1"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.1.2",
+    "react": "16.5.2"
+  }
+}
