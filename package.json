@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-fathom",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gatsby plugin to add Fathom tracking onto a site.",
   "repository": "lgraubner/gatsby-plugin-fathom",
   "bugs": {
