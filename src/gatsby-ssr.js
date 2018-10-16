@@ -13,7 +13,6 @@ function getTrackingCode(pluginOptions) {
     })(document, window, '//${pluginOptions.trackingUrl}/tracker.js', 'fathom');
     ${pluginOptions.siteId &&
       "fathom('set', 'siteId', '" + pluginOptions.siteId + "');"}
-    fathom('trackPageview');
   `;
 
   return (
