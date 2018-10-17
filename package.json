@@ -48,9 +48,9 @@
     "lint": "eslint ./src/**/*.js",
     "format": "prettier --write 'src/**/*.js'",
     "precommit": "lint-staged",
-    "release": "./node_modules/release-it/bin/release-it.js --src.tagName='%s' --github.release --npm.publish --non-interactive",
-    "release-minor": "./node_modules/release-it/bin/release-it.js minor --src.tagName='%s' --github.release --npm.publish --non-interactive",
-    "release-major": "./node_modules/release-it/bin/release-it.js major --src.tagName='%s' --github.release --npm.publish --non-interactive"
+    "release": "release-it --src.tagName='%s' --github.release --npm.publish --non-interactive",
+    "release-minor": "release-it minor --src.tagName='%s' --github.release --npm.publish --non-interactive",
+    "release-major": "release-it major --src.tagName='%s' --github.release --npm.publish --non-interactive"
   },
   "babel": {
     "presets": [
