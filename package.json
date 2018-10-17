@@ -1,7 +1,7 @@
 {
   "name": "gatsby-plugin-fathom",
   "version": "1.0.2",
-  "description": "Gatsby plugin to add Fathom tracking onto a site.",
+  "description": "Gatsby plugin to add Fathom tracking to your site.",
   "author": "Lars Graubner <mail@larsgraubner.de> (https://larsgraubner.com)",
   "license": "MIT",
   "repository": "lgraubner/gatsby-plugin-fathom",
@@ -35,7 +35,8 @@
     "eslint-plugin-react": "7.11.1",
     "husky": "1.1.2",
     "lint-staged": "7.3.0",
-    "prettier": "1.14.3"
+    "prettier": "1.14.3",
+    "release-it": "7.6.2"
   },
   "peerDependencies": {
     "gatsby": ">=2.0.0",
@@ -47,7 +48,9 @@
     "lint": "eslint ./src/**/*.js",
     "format": "prettier --write 'src/**/*.js'",
     "precommit": "lint-staged",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "release": "./node_modules/release-it/bin/release-it.js --src.tagName='%s' --github.release --npm.publish --non-interactive",
+    "release-minor": "./node_modules/release-it/bin/release-it.js minor --src.tagName='%s' --github.release --npm.publish --non-interactive",
+    "release-major": "./node_modules/release-it/bin/release-it.js major --src.tagName='%s' --github.release --npm.publish --non-interactive"
   },
   "babel": {
     "presets": [
