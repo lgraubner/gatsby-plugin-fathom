@@ -2,45 +2,79 @@
   "name": "gatsby-plugin-fathom",
   "version": "1.0.2",
   "description": "Gatsby plugin to add Fathom tracking onto a site.",
+  "author": "Lars Graubner <mail@larsgraubner.de> (https://larsgraubner.com)",
+  "license": "MIT",
   "repository": "lgraubner/gatsby-plugin-fathom",
   "bugs": {
     "url": "https://github.com/lgraubner/gatsby-plugin-fathom/issues"
   },
   "homepage": "https://github.com/lgraubner/gatsby-plugin-fathom",
-  "scripts": {
-    "build": "babel src --out-dir . --ignore __tests__",
-    "prepublishOnly": "cross-env NODE_ENV=production npm run build",
-    "lint": "eslint ./src/**/*.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "gatsby",
     "gatsby-plugin",
     "fathom",
     "analytics"
   ],
-  "author": "Lars Graubner <mail@larsgraubner.de> (https://larsgraubner.com)",
-  "license": "MIT",
-  "peerDependencies": {
-    "gatsby": ">=2.0.0"
-  },
-  "babel": {
-    "presets": [
-      "@babel/env",
-      "@babel/react"
-    ]
+  "main": "index.js",
+  "dependencies": {
+    "@babel/runtime": "7.1.2",
+    "react": "16.5.2"
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",
     "@babel/core": "7.1.2",
     "@babel/preset-env": "7.1.0",
     "@babel/preset-react": "7.0.0",
+    "babel-eslint": "9.0.0",
     "cross-env": "5.2.0",
     "eslint": "5.7.0",
-    "eslint-plugin-react": "7.11.1"
+    "eslint-config-react-app": "3.0.4",
+    "eslint-plugin-flowtype": "2.50.3",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-react": "7.11.1",
+    "husky": "1.1.2",
+    "lint-staged": "7.3.0",
+    "prettier": "1.14.3"
   },
-  "dependencies": {
-    "@babel/runtime": "7.1.2",
-    "react": "16.5.2"
+  "peerDependencies": {
+    "gatsby": ">=2.0.0",
+    "react": ">=16.0.0"
+  },
+  "scripts": {
+    "build": "babel src --out-dir . --ignore __tests__",
+    "prepublishOnly": "cross-env NODE_ENV=production npm run build",
+    "lint": "eslint ./src/**/*.js",
+    "format": "prettier --write 'src/**/*.js'",
+    "precommit": "lint-staged",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/env",
+        {
+          "targets": "last 4 versions, safari >= 7, ie >= 9"
+        }
+      ],
+      "@babel/react"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "globals": {
+      "fathom": false
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
   }
 }

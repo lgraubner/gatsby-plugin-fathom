@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function getTrackingCode(pluginOptions) {
   const html = `
@@ -13,19 +13,19 @@ function getTrackingCode(pluginOptions) {
     })(document, window, '//${pluginOptions.trackingUrl}/tracker.js', 'fathom');
     ${pluginOptions.siteId &&
       "fathom('set', 'siteId', '" + pluginOptions.siteId + "');"}
-  `;
+  `
 
   return (
     <script
       key="gatsby-plugin-fathom"
       dangerouslySetInnerHTML={{ __html: html }}
     />
-  );
+  )
 }
 
 exports.onRenderBody = ({ setPostBodyComponents, pathname }, pluginOptions) => {
   if (process.env.NODE_ENV === 'production') {
-    return setPostBodyComponents([getTrackingCode(pluginOptions)]);
+    return setPostBodyComponents([getTrackingCode(pluginOptions)])
   }
-  return null;
-};
+  return null
+}
