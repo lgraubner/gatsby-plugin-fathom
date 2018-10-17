@@ -2,7 +2,7 @@
 
 [![npm package](https://img.shields.io/npm/v/gatsby-plugin-fathom.svg)](https://www.npmjs.com/package/gatsby-plugin-fathom)
 
-Gatsby plugin to add Fathom tracking to your Gatsby site.
+Gatsby plugin to add Fathom tracking to your site.
 
 ## Table of contents
 
