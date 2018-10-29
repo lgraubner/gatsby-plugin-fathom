@@ -35,8 +35,7 @@
     "eslint-plugin-react": "7.11.1",
     "husky": "1.1.2",
     "lint-staged": "7.3.0",
-    "prettier": "1.14.3",
-    "release-it": "7.6.2"
+    "prettier": "1.14.3"
   },
   "peerDependencies": {
     "gatsby": ">=2.0.0",
@@ -47,10 +46,7 @@
     "prepublishOnly": "cross-env NODE_ENV=production npm run build",
     "lint": "eslint ./src/**/*.js",
     "format": "prettier --write 'src/**/*.js'",
-    "precommit": "lint-staged",
-    "release": "release-it --src.tagName='%s' --github.release --npm.publish --non-interactive",
-    "release-minor": "release-it minor --src.tagName='%s' --github.release --npm.publish --non-interactive",
-    "release-major": "release-it major --src.tagName='%s' --github.release --npm.publish --non-interactive"
+    "precommit": "lint-staged"
   },
   "babel": {
     "presets": [
