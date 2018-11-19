@@ -75,5 +75,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "release": {
+    "tagFormat": "${version}"
   }
 }
