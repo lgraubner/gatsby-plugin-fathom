@@ -34,6 +34,7 @@
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.11.1",
     "husky": "1.1.2",
+    "jest": "^24.8.0",
     "lint-staged": "7.3.0",
     "prettier": "1.14.3"
   },
@@ -46,7 +47,8 @@
     "prepublishOnly": "cross-env NODE_ENV=production npm run build",
     "lint": "eslint ./src/**/*.js",
     "format": "prettier --write 'src/**/*.js'",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "test": "jest"
   },
   "babel": {
     "presets": [
