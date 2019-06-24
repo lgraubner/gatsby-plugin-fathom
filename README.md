@@ -26,9 +26,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-fathom',
       options: {
-        // your Fathom server URL
+        // Fathom server URL. Defaults to `cdn.usefathom.com`
         trackingUrl: 'your-fathom-instance.com',
-        // unique site id (optional, required for Fathom v1.1.0+)
+        // Unique site id
         siteId: 'FATHOM_SITE_ID'
       }
     }
@@ -36,14 +36,14 @@ module.exports = {
 }
 ```
 
-*By default, this plugin only generates output when run in production mode. To test your tracking code, run `gatsby build && gatsby serve`.*
+_By default, this plugin only generates output when run in production mode. To test your tracking code, run `gatsby build && gatsby serve`._
 
 ## Options
 
-Option           | Explanation
------------------|---------
-`trackingUrl`    | Your Fathom instance URL
-`siteId`         | Unique site id (optional, required for Fathom v1.1.0+)
+| Option        | Explanation                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------------ |
+| `trackingUrl` | Your Fathom instance URL (optional; only necessary if self-hosting Fathom)                       |
+| `siteId`      | Unique site id (required when using the hosted version of Fathom or self-hosting Fathom v1.1.0+) |
 
 ## License
 
