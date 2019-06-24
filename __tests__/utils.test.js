@@ -1,12 +1,27 @@
 import { createTrackingSnippet } from '../src/utils'
 
-test('generating the tracking url', () => {
+test('setting the tracking URL', () => {
   const html = createTrackingSnippet({
-    trackingUrl: 'alexlafroscia.com',
-    siteId: 'foo-bar'
+    trackingUrl: 'alexlafroscia.com'
   })
 
   expect(html).toContain('//alexlafroscia.com/tracker.js')
+})
+
+describe('when the tracking URL is not provided', () => {
+  test('defaulting to the CDN URL', () => {
+    const html = createTrackingSnippet({
+      siteId: 'foo-bar'
+    })
+
+    expect(html).toContain('//cdn.usefathom.com/tracker.js')
+  })
+
+  test('ensuring that a tracking ID is provided', () => {
+    expect(function() {
+      createTrackingSnippet({})
+    }).toThrow()
+  })
 })
 
 describe('setting the site ID', () => {
