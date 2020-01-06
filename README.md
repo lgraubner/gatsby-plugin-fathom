@@ -29,7 +29,12 @@ module.exports = {
         // Fathom server URL. Defaults to `cdn.usefathom.com`
         trackingUrl: 'your-fathom-instance.com',
         // Unique site id
-        siteId: 'FATHOM_SITE_ID'
+        siteId: 'FATHOM_SITE_ID',
+        // Exclude stats for specific hostnames
+        excludeHostnames: [
+          'localhost',
+          'othersite.com'
+        ]
       }
     }
   ]

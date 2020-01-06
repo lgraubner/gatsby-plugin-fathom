@@ -23,3 +23,14 @@ exports.createTrackingSnippet = function createTrackingSnippet({
     ${siteId && "fathom('set', 'siteId', '" + siteId + "');"}
   `
 }
+
+exports.isExcludedHostname = function isExcludedHostname(
+  excludeHostnames = [],
+  hostname
+) {
+  if (!Array.isArray(excludeHostnames)) {
+    throw new Error('`excludeHostnames` must be provided as an array')
+  }
+
+  return excludeHostnames.indexOf(hostname) !== -1
+}
