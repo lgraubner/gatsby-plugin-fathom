@@ -24,13 +24,17 @@ exports.createTrackingSnippet = function createTrackingSnippet({
   `
 }
 
-exports.isExcludedHostname = function isExcludedHostname(
-  excludeHostnames = [],
+exports.isWhitelistedHostname = function isWhitelistedHostname(
+  whitelist = [],
   hostname
 ) {
-  if (!Array.isArray(excludeHostnames)) {
-    throw new Error('`excludeHostnames` must be provided as an array')
+  if (!Array.isArray(whitelist)) {
+    throw new Error('`whitelistHostnames` must be provided as an array')
   }
 
-  return excludeHostnames.indexOf(hostname) !== -1
+  if (whitelist.length === 0) {
+    return true
+  }
+
+  return whitelist.indexOf(hostname) !== -1
 }

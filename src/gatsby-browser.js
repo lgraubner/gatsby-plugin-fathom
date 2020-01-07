@@ -1,10 +1,10 @@
-import { isExcludedHostname } from './utils'
+import { isWhitelistedHostname } from './utils'
 
-exports.onRouteUpdate = ({ location }, { excludeHostnames }) => {
+exports.onRouteUpdate = ({ location }, { whitelistHostnames }) => {
   if (
     process.env.NODE_ENV === 'production' &&
     typeof fathom !== 'undefined' &&
-    !isExcludedHostname(excludeHostnames, location.hostname)
+    isWhitelistedHostname(whitelistHostnames, location.hostname)
   ) {
     fathom('trackPageview')
   }

@@ -1,4 +1,4 @@
-import { createTrackingSnippet, isExcludedHostname } from '../src/utils'
+import { createTrackingSnippet, isWhitelistedHostname } from '../src/utils'
 
 describe('createTrackingSnippet', () => {
   test('setting the tracking URL', () => {
@@ -45,20 +45,25 @@ describe('createTrackingSnippet', () => {
   })
 })
 
-describe('isExcludedHostname', () => {
-  test('ensuring excluded hostnames is an array', () => {
+describe('isWhitelistedHostname', () => {
+  test('ensuring whitelist is an array', () => {
     expect(function() {
-      isExcludedHostname({})
+      isWhitelistedHostname({})
     }).toThrow()
   })
 
-  test('when hostname is excluded', () => {
-    const isExcluded = isExcludedHostname(['localhost'], 'localhost')
-    expect(isExcluded).toBe(true)
+  test('when whitelist is empty', () => {
+    const isWhitelisted = isWhitelistedHostname([], 'localhost')
+    expect(isWhitelisted).toBe(true)
   })
 
-  test('when hostname is not excluded', () => {
-    const isExcluded = isExcludedHostname(['localhost'], 'localghost')
-    expect(isExcluded).toBe(false)
+  test('when hostname is whitelisted', () => {
+    const isWhitelisted = isWhitelistedHostname(['localhost'], 'localhost')
+    expect(isWhitelisted).toBe(true)
+  })
+
+  test('when hostname is not whitelisted', () => {
+    const isWhitelisted = isWhitelistedHostname(['localhost'], 'localghost')
+    expect(isWhitelisted).toBe(false)
   })
 })

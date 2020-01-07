@@ -3,7 +3,7 @@ import { onRouteUpdate } from '../src/gatsby-browser'
 describe('onRouteUpdate', () => {
   const location = { hostname: 'localhost' }
   const pluginOptions = {
-    excludeHostnames: []
+    whitelistHostnames: []
   }
 
   const OLD_NODE_ENV = process.env.NODE_ENV
@@ -56,12 +56,12 @@ describe('onRouteUpdate', () => {
     })
   })
 
-  describe('when hostname is excluded', () => {
+  describe('when hostname is not whitelisted', () => {
     test('should not track page view', () => {
       onRouteUpdate(
-        { location },
+        { location: { hostname: 'localghost' } },
         {
-          excludeHostnames: ['localhost']
+          whitelistHostnames: ['localhost']
         }
       )
 
