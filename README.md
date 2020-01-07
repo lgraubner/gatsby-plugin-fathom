@@ -30,7 +30,7 @@ module.exports = {
         trackingUrl: 'your-fathom-instance.com',
         // Unique site id
         siteId: 'FATHOM_SITE_ID',
-        // Exclude stats for specific hostnames
+        // Domain blacklist
         excludeHostnames: [
           'localhost',
           'othersite.com'
@@ -45,10 +45,11 @@ _By default, this plugin only generates output when run in production mode. To t
 
 ## Options
 
-| Option        | Explanation                                                                                      |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| `trackingUrl` | Your Fathom instance URL (optional; only necessary if self-hosting Fathom)                       |
-| `siteId`      | Unique site id (required when using the hosted version of Fathom or self-hosting Fathom v1.1.0+) |
+| Option             | Explanation                                                                                      |
+| ------------------ | ------------------------------------------------------------------------------------------------ |
+| `trackingUrl`      | Your Fathom instance URL (optional; only necessary if self-hosting Fathom)                       |
+| `siteId`           | Unique site id (required when using the hosted version of Fathom or self-hosting Fathom v1.1.0+) |
+| `excludeHostnames` | List of hostnames you wish to prevent tracking for (optional)                                    |
 
 ## License
 
