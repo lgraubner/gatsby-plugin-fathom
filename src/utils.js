@@ -23,3 +23,18 @@ exports.createTrackingSnippet = function createTrackingSnippet({
     ${siteId && "fathom('set', 'siteId', '" + siteId + "');"}
   `
 }
+
+exports.isWhitelistedHostname = function isWhitelistedHostname(
+  whitelist = [],
+  hostname
+) {
+  if (!Array.isArray(whitelist)) {
+    throw new Error('`whitelistHostnames` must be provided as an array')
+  }
+
+  if (whitelist.length === 0) {
+    return true
+  }
+
+  return whitelist.indexOf(hostname) !== -1
+}

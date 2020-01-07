@@ -29,7 +29,11 @@ module.exports = {
         // Fathom server URL. Defaults to `cdn.usefathom.com`
         trackingUrl: 'your-fathom-instance.com',
         // Unique site id
-        siteId: 'FATHOM_SITE_ID'
+        siteId: 'FATHOM_SITE_ID',
+        // Domain whitelist
+        whitelistHostnames: [
+          'yoursite.com'
+        ]
       }
     }
   ]
@@ -40,10 +44,11 @@ _By default, this plugin only generates output when run in production mode. To t
 
 ## Options
 
-| Option        | Explanation                                                                                      |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| `trackingUrl` | Your Fathom instance URL (optional; only necessary if self-hosting Fathom)                       |
-| `siteId`      | Unique site id (required when using the hosted version of Fathom or self-hosting Fathom v1.1.0+) |
+| Option               | Explanation                                                                                                  |
+| -------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `trackingUrl`        | Your Fathom instance URL (optional; only necessary if self-hosting Fathom)                                   |
+| `siteId`             | Unique site id (required when using the hosted version of Fathom or self-hosting Fathom v1.1.0+)             |
+| `whitelistHostnames` | List of hostnames to enable tracking for (optional; if not provided tracking will be enabled on all domains) |
 
 ## License
 
