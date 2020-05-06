@@ -32,7 +32,8 @@ module.exports = {
         siteId: 'FATHOM_SITE_ID',
         // Domain whitelist
         whitelistHostnames: [
-          'yoursite.com'
+          'yoursite.com',
+          'www.yoursite.com'
         ]
       }
     }
