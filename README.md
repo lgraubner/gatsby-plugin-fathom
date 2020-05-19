@@ -40,6 +40,23 @@ module.exports = {
 }
 ```
 
+## Goal Tracking
+
+You can import a hook for tracking goals in any component like so:
+
+```javascript
+import { useGoal } from 'gatsby-plugin-fathom'
+
+export default function Foo() {
+  // use can pass true as the 2nd param in order to console log the tracked goal's ID
+  // useful for debugging in development
+  const handleGoal = useGoal('GOAL-ID')
+  
+  return (
+    <button onClick={handleGoal}>Click me</button>
+  )
+}
+
 _By default, this plugin only generates output when run in production mode. To test your tracking code, run `gatsby build && gatsby serve`._
 
 ## Options
