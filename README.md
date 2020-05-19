@@ -40,6 +40,8 @@ module.exports = {
 }
 ```
 
+_By default, this plugin only generates output when run in production mode. To test your tracking code, run `gatsby build && gatsby serve`._
+
 ## Goal Tracking
 
 You can import a hook for tracking goals in any component like so:
@@ -56,8 +58,6 @@ export default function Foo() {
     <button onClick={handleGoal}>Click me</button>
   )
 }
-
-_By default, this plugin only generates output when run in production mode. To test your tracking code, run `gatsby build && gatsby serve`._
 
 ## Options
 
