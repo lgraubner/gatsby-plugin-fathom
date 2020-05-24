@@ -3,7 +3,7 @@ import { onRouteUpdate } from '../src/gatsby-browser'
 describe('onRouteUpdate', () => {
   const location = { hostname: 'localhost' }
   const pluginOptions = {
-    whitelistHostnames: []
+    whitelistHostnames: [],
   }
 
   const OLD_NODE_ENV = process.env.NODE_ENV
@@ -19,9 +19,19 @@ describe('onRouteUpdate', () => {
     process.env.NODE_ENV = OLD_NODE_ENV
   })
 
-  test('should track page view', () => {
+  test('v1 embed code: should track page view', () => {
     onRouteUpdate({ location }, pluginOptions)
     expect(fathomMock).toHaveBeenCalledWith('trackPageview')
+  })
+
+  test('v2 embed code: should track page view', () => {
+    pluginOptions.embedVersion = 'v2'
+    global.fathom = {
+      trackPageview: jest.fn(),
+    }
+
+    onRouteUpdate({ location }, pluginOptions)
+    expect(fathom.trackPageview).toHaveBeenCalled()
   })
 
   describe('when not running in a production environment', () => {
@@ -35,7 +45,6 @@ describe('onRouteUpdate', () => {
 
     test('should not track page view', () => {
       onRouteUpdate({ location }, pluginOptions)
-
       expect(fathomMock).not.toHaveBeenCalled()
     })
   })
@@ -61,7 +70,7 @@ describe('onRouteUpdate', () => {
       onRouteUpdate(
         { location: { hostname: 'localghost' } },
         {
-          whitelistHostnames: ['localhost']
+          whitelistHostnames: ['localhost'],
         }
       )
 
