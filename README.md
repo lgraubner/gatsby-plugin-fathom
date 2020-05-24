@@ -49,7 +49,7 @@ _By default, this plugin only generates output when run in production mode. To t
 | `trackingUrl`        | Your Fathom instance URL (optional; only necessary if self-hosting Fathom)                                   |
 | `siteId`             | Unique site id (required when using the hosted version of Fathom or self-hosting Fathom v1.1.0+)             |
 | `whitelistHostnames` | List of hostnames to enable tracking for (optional; if not provided tracking will be enabled on all domains) |
-
+| `embedVersion`       | Pass 'v2' to use the latest fathom embed code, defaults to original embed code                               |
 ## License
 
 [MIT](https://github.com/lgraubner/gatsby-plugin-fathom/blob/master/LICENSE) © [Lars Graubner](https://larsgraubner.com)
