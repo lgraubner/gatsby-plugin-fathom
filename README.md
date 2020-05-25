@@ -59,6 +59,7 @@ export default function Foo() {
     <button onClick={handleGoal}>Click me</button>
   )
 }
+```
 
 ## Options
 
