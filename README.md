@@ -1,5 +1,7 @@
 # gatsby-plugin-fathom
 
+## This project is outdated and you should use the official Fathom guide: https://usefathom.com/integrations/gatsbyjs
+
 [![npm package](https://img.shields.io/npm/v/gatsby-plugin-fathom.svg)](https://www.npmjs.com/package/gatsby-plugin-fathom)
 
 Gatsby plugin to add Fathom tracking to your site.
