@@ -1,38 +1,29 @@
 import React from 'react'
 
-import { createTrackingSnippet } from './utils'
+import { parsePluginOptions } from './utils'
 
-function getTrackingCode(pluginOptions) {
-  const {
-    embedVersion = 'v1',
-    trackingUrl = 'cdn.usefathom.com',
-    siteId,
-  } = pluginOptions
+const createScriptTag = options => {
+  const { customDomain, disableOnDev, fathomProps } = parsePluginOptions(
+    options
+  )
 
-  if (embedVersion === 'v2') {
-    return (
-      <script
-        key="gatsby-plugin-fathom"
-        src={`https://${trackingUrl}/script.js`}
-        site={siteId}
-        defer
-      />
-    )
+  if (process.env.NODE_ENV === 'development' && disableOnDev) {
+    return null
   }
 
-  const html = createTrackingSnippet(pluginOptions)
   return (
     <script
       key="gatsby-plugin-fathom"
-      dangerouslySetInnerHTML={{ __html: html }}
+      src={`https://${customDomain}/script.js`}
+      {...fathomProps}
+      defer
     />
   )
 }
 
-exports.onRenderBody = ({ setPostBodyComponents, pathname }, pluginOptions) => {
-  if (process.env.NODE_ENV === 'production') {
-    return setPostBodyComponents([getTrackingCode(pluginOptions)])
+export const onRenderBody = ({ setPostBodyComponents }, pluginOptions) => {
+  const scriptTag = createScriptTag(pluginOptions)
+  if (scriptTag) {
+    setPostBodyComponents([scriptTag])
   }
-
-  return null
 }

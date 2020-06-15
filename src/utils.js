@@ -1,40 +1,57 @@
-const DEFAULT_TRACKING_URL = 'cdn.usefathom.com'
-
-exports.createTrackingSnippet = function createTrackingSnippet({
-  trackingUrl = DEFAULT_TRACKING_URL,
-  siteId
-}) {
-  if (trackingUrl === DEFAULT_TRACKING_URL && !siteId) {
+export const parsePluginOptions = ({
+  site,
+  customDomain = 'cdn.usefathom.com',
+  disableOnDev = false,
+  includedDomains,
+  excludedDomains,
+  honorDNT,
+  canonical,
+  auto
+}) => {
+  if (!site) {
     throw new Error(
-      '`siteId` must be provided when using the hosted version of Fathom'
+      '`site` must be provided when using the hosted version of Fathom'
     )
   }
 
-  return `
-    (function(f, a, t, h, o, m){
-      a[h]=a[h]||function(){
-        (a[h].q=a[h].q||[]).push(arguments)
-      };
-      o=f.createElement('script'),
-      m=f.getElementsByTagName('script')[0];
-      o.async=1; o.src=t; o.id='fathom-script';
-      m.parentNode.insertBefore(o,m)
-    })(document, window, '//${trackingUrl}/tracker.js', 'fathom');
-    ${siteId && "fathom('set', 'siteId', '" + siteId + "');"}
-  `
-}
-
-exports.isWhitelistedHostname = function isWhitelistedHostname(
-  whitelist = [],
-  hostname
-) {
-  if (!Array.isArray(whitelist)) {
-    throw new Error('`whitelistHostnames` must be provided as an array')
+  const fathomProps = {
+    site,
+    spa: 'auto'
   }
 
-  if (whitelist.length === 0) {
-    return true
+  if (includedDomains) {
+    if (!Array.isArray(includedDomains)) {
+      throw new Error('`includedDomains` must be provided as an array')
+    }
+    if (includedDomains.length) {
+      fathomProps['included-domains'] = includedDomains.join(',')
+    }
   }
 
-  return whitelist.indexOf(hostname) !== -1
+  if (excludedDomains) {
+    if (!Array.isArray(excludedDomains)) {
+      throw new Error('`excludedDomains` must be provided as an array')
+    }
+    if (excludedDomains.length) {
+      fathomProps['excluded-domains'] = excludedDomains.join(',')
+    }
+  }
+
+  if (honorDNT !== undefined) {
+    fathomProps['honor-dnt'] = honorDNT ? 'true' : 'false'
+  }
+
+  if (canonical !== undefined) {
+    fathomProps.canonical = canonical ? 'true' : 'false'
+  }
+
+  if (auto !== undefined) {
+    fathomProps.auto = auto ? 'true' : 'false'
+  }
+
+  return {
+    customDomain,
+    disableOnDev,
+    fathomProps
+  }
 }

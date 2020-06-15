@@ -27,11 +27,11 @@ module.exports = {
       resolve: 'gatsby-plugin-fathom',
       options: {
         // Fathom server URL. Defaults to `cdn.usefathom.com`
-        trackingUrl: 'your-fathom-instance.com',
+        customDomain: 'your-fathom-instance.com',
         // Unique site id
-        siteId: 'FATHOM_SITE_ID',
+        site: 'FATHOM_SITE_ID',
         // Domain whitelist
-        whitelistHostnames: [
+        includedDomains: [
           'yoursite.com',
           'www.yoursite.com'
         ]
@@ -41,8 +41,6 @@ module.exports = {
 }
 ```
 
-_By default, this plugin only generates output when run in production mode. To test your tracking code, run `gatsby build && gatsby serve`._
-
 ## Goal Tracking
 
 You can import a hook for tracking goals in any component like so:
@@ -51,9 +49,9 @@ You can import a hook for tracking goals in any component like so:
 import { useGoal } from 'gatsby-plugin-fathom'
 
 export default function Foo() {
-  // use can pass true as the 2nd param in order to console log the tracked goal's ID
+  // use can pass true as the 3rd param in order to console log the tracked goal's ID
   // useful for debugging in development
-  const handleGoal = useGoal('GOAL-ID')
+  const handleGoal = useGoal('GOAL-ID', 0)
   
   return (
     <button onClick={handleGoal}>Click me</button>
@@ -65,10 +63,15 @@ export default function Foo() {
 
 | Option               | Explanation                                                                                                  |
 | -------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `trackingUrl`        | Your Fathom instance URL (optional; only necessary if self-hosting Fathom)                                   |
-| `siteId`             | Unique site id (required when using the hosted version of Fathom or self-hosting Fathom v1.1.0+)             |
-| `whitelistHostnames` | List of hostnames to enable tracking for (optional; if not provided tracking will be enabled on all domains) |
-| `embedVersion`       | Pass 'v2' to use the latest fathom embed code, defaults to original embed code                               |
+| `site`               | Unique site id (required when using the hosted version of Fathom or self-hosting Fathom v1.1.0+)             |
+| `customDomain`       | Your Fathom instance URL (optional; only necessary if self-hosting Fathom)                                   |
+| `includedDomains`    | Array of domains to enable tracking for (optional; if not provided tracking will be enabled on all domains)  |
+| `excludedDomains`    | Array of domains to disable tracking for (optional)                                                          |
+| `honorDNT`           | Honor the visitor Do Not Track config (optional; see https://usefathom.com/support/tracking-advanced)        |
+| `canonical`          | Ignore canonical meta tag (optional; see https://usefathom.com/support/tracking-advanced )                   |
+| `auto`               | Disable automatic tracking (optional; see https://usefathom.com/support/tracking-advanced)                   |
+| `disableOnDev`       | Disable plugin on development environment (optional; defaults to false)                                      |
+
 ## License
 
 [MIT](https://github.com/lgraubner/gatsby-plugin-fathom/blob/master/LICENSE) © [Lars Graubner](https://larsgraubner.com)
