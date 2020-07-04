@@ -1,38 +1,25 @@
-import React from 'react'
+const React = require('react')
 
-import { createTrackingSnippet } from './utils'
+module.exports.onPreRenderHTML = (
+  { getHeadComponents, replaceHeadComponents },
+  { trackingUrl = 'cdn.usefathom.com', siteId }
+) => {
+  const isProduction = process.env.NODE_ENV === 'production'
 
-function getTrackingCode(pluginOptions) {
-  const {
-    embedVersion = 'v1',
-    trackingUrl = 'cdn.usefathom.com',
-    siteId,
-  } = pluginOptions
+  if (isProduction && !siteId) {
+    throw new Error('`siteId` must be defined for gatsby-plugin-fathom')
+  }
 
-  if (embedVersion === 'v2') {
-    return (
+  replaceHeadComponents([
+    ...getHeadComponents(),
+    isProduction ? (
       <script
         key="gatsby-plugin-fathom"
         src={`https://${trackingUrl}/script.js`}
         site={siteId}
+        spa="auto"
         defer
       />
-    )
-  }
-
-  const html = createTrackingSnippet(pluginOptions)
-  return (
-    <script
-      key="gatsby-plugin-fathom"
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
-  )
-}
-
-exports.onRenderBody = ({ setPostBodyComponents, pathname }, pluginOptions) => {
-  if (process.env.NODE_ENV === 'production') {
-    return setPostBodyComponents([getTrackingCode(pluginOptions)])
-  }
-
-  return null
+    ) : null,
+  ])
 }
