@@ -1,6 +1,6 @@
 export default function useGoal(id, debug = false) {
   return () => {
-    if (window.fathom === undefined) {
+    if (typeof window === 'undefined' || typeof window.fathom === 'undefined') {
       return
     }
 
