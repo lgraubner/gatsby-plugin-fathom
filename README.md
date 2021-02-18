@@ -99,6 +99,18 @@ export default function Foo() {
 }
 ```
 
+The function returned by `useGoal` also excepts a value to be sent with the id. If not set it defaults to `0`.
+
+```javascript
+import { useGoal } from 'gatsby-plugin-fathom'
+
+export default function Foo() {
+  const handleGoal = useGoal('GOAL-ID')
+
+  return <button onClick={() => handleGoal(100)}>Buy</button>
+}
+```
+
 ## License
 
 [MIT](https://github.com/lgraubner/gatsby-plugin-fathom/blob/master/LICENSE) © [Lars Graubner](https://larsgraubner.com)
