@@ -24,11 +24,14 @@ _By default, this plugin only generates output when run in production mode. To t
 
 ### Options
 
-| Option        | Explanation                          | Default           |
-| ------------- | ------------------------------------ | ----------------- |
-| `trackingUrl` | Your Fathom custom domain (optional) | cdn.usefathom.com |
-| `siteId`      | Fathom site ID                       |                   |
-| `honorDnt`    | Honor do not track                   | `false`           |
+| Option            | Explanation                                  | Default           |
+| ----------------- | -------------------------------------------- | ----------------- |
+| `trackingUrl`     | Your Fathom custom domain (optional)         | cdn.usefathom.com |
+| `siteId`          | Fathom site ID                               |                   |
+| `honorDnt`        | Honor do not track                           | `false`           |
+| `ignoreCanonical` | Ignore canonical and use current URL         | `false`           |
+| `includedDomains` | Only include provided domains in tracking    | `[]`              |
+| `excludedDomains` | Track every domain, except the ones provided | `[]`              |
 
 For more information on each option check https://usefathom.com/support/tracking-advanced.
 

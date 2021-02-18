@@ -2,7 +2,14 @@ const React = require('react')
 
 module.exports.onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
-  { trackingUrl = 'cdn.usefathom.com', siteId, honorDnt }
+  {
+    trackingUrl = 'cdn.usefathom.com',
+    siteId,
+    honorDnt,
+    ignoreCanonical,
+    includedDomains,
+    excludedDomains,
+  }
 ) => {
   const isProduction = process.env.NODE_ENV === 'production'
 
@@ -20,6 +27,13 @@ module.exports.onPreRenderHTML = (
         spa="auto"
         defer
         data-honor-dnt={honorDnt ? 'true' : undefined}
+        data-canonical={ignoreCanonical ? 'false' : undefined}
+        data-included-domains={
+          includedDomains ? includedDomains.join(',') : undefined
+        }
+        data-excluded-domains={
+          excludedDomains ? excludedDomains.join(',') : undefined
+        }
       />
     ) : null,
   ])

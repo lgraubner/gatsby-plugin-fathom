@@ -89,7 +89,7 @@ describe('onPreRenderHTML', () => {
       ).toThrow(new Error('`siteId` must be defined for gatsby-plugin-fathom'))
     })
 
-    it('should add honorDnt if enabled', () => {
+    it('should add honor do not track option', () => {
       plugin.onPreRenderHTML(
         { getHeadComponents, replaceHeadComponents },
         { siteId: 'ABCDEF', honorDnt: true }
@@ -104,6 +104,63 @@ describe('onPreRenderHTML', () => {
           spa="auto"
           defer
           data-honor-dnt="true"
+        />,
+      ])
+    })
+
+    it('should add ignore canonical option', () => {
+      plugin.onPreRenderHTML(
+        { getHeadComponents, replaceHeadComponents },
+        { siteId: 'ABCDEF', ignoreCanonical: true }
+      )
+
+      expect(replaceHeadComponents).toHaveBeenCalledWith([
+        ...headComponents,
+        <script
+          key="gatsby-plugin-fathom"
+          src={'https://cdn.usefathom.com/script.js'}
+          site={'ABCDEF'}
+          spa="auto"
+          defer
+          data-canonical="false"
+        />,
+      ])
+    })
+
+    it('should add included domains', () => {
+      plugin.onPreRenderHTML(
+        { getHeadComponents, replaceHeadComponents },
+        { siteId: 'ABCDEF', includedDomains: ['localhost', 'example.com'] }
+      )
+
+      expect(replaceHeadComponents).toHaveBeenCalledWith([
+        ...headComponents,
+        <script
+          key="gatsby-plugin-fathom"
+          src={'https://cdn.usefathom.com/script.js'}
+          site={'ABCDEF'}
+          spa="auto"
+          defer
+          data-included-domains="localhost,example.com"
+        />,
+      ])
+    })
+
+    it('should add excluded domains', () => {
+      plugin.onPreRenderHTML(
+        { getHeadComponents, replaceHeadComponents },
+        { siteId: 'ABCDEF', excludedDomains: ['localhost', 'example.com'] }
+      )
+
+      expect(replaceHeadComponents).toHaveBeenCalledWith([
+        ...headComponents,
+        <script
+          key="gatsby-plugin-fathom"
+          src={'https://cdn.usefathom.com/script.js'}
+          site={'ABCDEF'}
+          spa="auto"
+          defer
+          data-excluded-domains="localhost,example.com"
         />,
       ])
     })
