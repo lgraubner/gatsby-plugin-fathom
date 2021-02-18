@@ -1,5 +1,5 @@
 import React from 'react'
-import plugin from '../src/gatsby-ssr'
+import plugin from '../gatsby-ssr'
 
 describe('onPreRenderHTML', () => {
   let replaceHeadComponents

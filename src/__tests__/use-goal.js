@@ -1,4 +1,4 @@
-import useGoal from '../src/use-goal'
+import useGoal from '../use-goal'
 
 describe('useGoal', () => {
   it('should abort silently if run server side', () => {
