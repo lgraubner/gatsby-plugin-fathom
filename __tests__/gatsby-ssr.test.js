@@ -88,5 +88,24 @@ describe('onPreRenderHTML', () => {
         plugin.onPreRenderHTML({ getHeadComponents, replaceHeadComponents }, {})
       ).toThrow(new Error('`siteId` must be defined for gatsby-plugin-fathom'))
     })
+
+    it('should add honorDnt if enabled', () => {
+      plugin.onPreRenderHTML(
+        { getHeadComponents, replaceHeadComponents },
+        { siteId: 'ABCDEF', honorDnt: true }
+      )
+
+      expect(replaceHeadComponents).toHaveBeenCalledWith([
+        ...headComponents,
+        <script
+          key="gatsby-plugin-fathom"
+          src={'https://cdn.usefathom.com/script.js'}
+          site={'ABCDEF'}
+          spa="auto"
+          defer
+          data-honor-dnt="true"
+        />,
+      ])
+    })
   })
 })

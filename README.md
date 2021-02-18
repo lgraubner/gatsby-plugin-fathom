@@ -24,10 +24,13 @@ _By default, this plugin only generates output when run in production mode. To t
 
 ### Options
 
-| Option        | Explanation                          |
-| ------------- | ------------------------------------ |
-| `trackingUrl` | Your Fathom custom domain (optional) |
-| `siteId`      | Fathom site ID                       |
+| Option        | Explanation                          | Default           |
+| ------------- | ------------------------------------ | ----------------- |
+| `trackingUrl` | Your Fathom custom domain (optional) | cdn.usefathom.com |
+| `siteId`      | Fathom site ID                       |                   |
+| `honorDnt`    | Honor do not track                   | `false`           |
+
+For more information on each option check https://usefathom.com/support/tracking-advanced.
 
 ### Example
 

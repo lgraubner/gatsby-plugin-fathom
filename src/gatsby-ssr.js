@@ -2,7 +2,7 @@ const React = require('react')
 
 module.exports.onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
-  { trackingUrl = 'cdn.usefathom.com', siteId }
+  { trackingUrl = 'cdn.usefathom.com', siteId, honorDnt }
 ) => {
   const isProduction = process.env.NODE_ENV === 'production'
 
@@ -19,6 +19,7 @@ module.exports.onPreRenderHTML = (
         site={siteId}
         spa="auto"
         defer
+        data-honor-dnt={honorDnt ? 'true' : undefined}
       />
     ) : null,
   ])
